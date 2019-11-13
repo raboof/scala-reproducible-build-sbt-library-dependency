@@ -2,10 +2,11 @@ organization := "net.bzzt"
 
 scalaVersion := "2.13.1"
 
-lazy val root = (project in file(".")).aggregate(tlib, prog)
+lazy val root = (project in file(".")).aggregate(lib, prog)
 
 lazy val prog = (project in file("project-using-test-lib"))
-  .dependsOn(tlib)
+  .dependsOn(lib)
 
-lazy val tlib = project in file("test-lib")
+lazy val lib = (project in file("test-lib"))
+  .enablePlugins(ReproducibleBuildsPlugin)
 
